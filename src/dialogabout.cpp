@@ -34,11 +34,11 @@ DialogAbout::~DialogAbout()
 
 void DialogAbout::SetAboutMessage()
 {
-    QString descMsg = "LXQt Organizer is a lightweight organizer for personal information management.";
-    QString headerMsg = "LXQt Organizer (v0.003 Alpha3)";
-    QString authorMsg = "Author (Lead Developer): Alan Crispin  (aka. crispina)";
-    QString lxqtMsg1 =  "LXQt desktop project.";
-    QString lxqtLinkMsg ="<a href='https://github.com/lxqt'>LXQt</a>";
+    QString descMsg = QStringLiteral("LXQt Organizer is a lightweight organizer for personal information management.");
+    QString headerMsg = QStringLiteral("LXQt Organizer (v0.003 Alpha3)");
+    QString authorMsg = QStringLiteral("Author (Lead Developer): Alan Crispin  (aka. crispina)");
+    QString lxqtMsg1 =  QStringLiteral("LXQt desktop project.");
+    QString lxqtLinkMsg =QStringLiteral("<a href='https://github.com/lxqt'>LXQt</a>");
     QString license1 ="LXQt Organizer is free software: you can redistribute it and/or modify it under the terms "
                       "of the GNU General Public License as published by the Free Software Foundation.";
     QString

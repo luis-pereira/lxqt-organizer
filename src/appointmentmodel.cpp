@@ -98,10 +98,10 @@ QVariant AppointmentModel::data(const QModelIndex &index, int role) const
         QString dateStr="("+QString::number(appointmentDay)+"/"
                 +QString::number(appointmentMonth)+"/"
                 +QString::number(appointmentYear)+")";    
-        QString minutesStartStr = QString("%1").arg(appointmentStartMin, 2, 10, QChar('0'));
+        QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartMin, 2, 10, QChar('0'));
         QString startTimeStr=QString::number(appointmentStartHour,'f',0)
                 +":"+minutesStartStr;
-        QString minutesEndStr = QString("%1").arg(appointmentEndMin, 2, 10, QChar('0'));
+        QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndMin, 2, 10, QChar('0'));
         QString endTimeStr=QString::number(appointmentEndHour,'f',0)+
                 ":"+minutesEndStr;
         switch (index.column()) {
