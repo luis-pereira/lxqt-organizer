@@ -48,46 +48,46 @@ void DbManager::createDatebaseTables()
    //QString sql1 = "CREATE TABLE IF NOT EXISTS appointments (AppointmentId INTEGER PRIMARY KEY,";
 
     QString sql1 = QStringLiteral("CREATE TABLE appointments (AppointmentId INTEGER PRIMARY KEY,");
-    sql1.append("Title TEXT,");
-    sql1.append("Location TEXT,");
-    sql1.append("Description TEXT,");
-    sql1.append("Date TEXT,");
-    sql1.append("StartTime TEXT,");
-    sql1.append("EndTime TEXT,");
-    sql1.append("ReminderId INTEGER");
-    sql1.append(");");
+    sql1.append(QLatin1String("Title TEXT,"));
+    sql1.append(QLatin1String("Location TEXT,"));
+    sql1.append(QLatin1String("Description TEXT,"));
+    sql1.append(QLatin1String("Date TEXT,"));
+    sql1.append(QLatin1String("StartTime TEXT,"));
+    sql1.append(QLatin1String("EndTime TEXT,"));
+    sql1.append(QLatin1String("ReminderId INTEGER"));
+    sql1.append(QLatin1String(");"));
 
     QString sql2 = QStringLiteral("CREATE TABLE reminders (ReminderId INTEGER PRIMARY KEY,");
-    sql2.append("Details TEXT,");
-    sql2.append("ReminderDate TEXT,");
-    sql2.append("ReminderTime TEXT,");
-    sql2.append("ReminderRequest INTEGER");
-    sql2.append(");");
+    sql2.append(QLatin1String("Details TEXT,"));
+    sql2.append(QLatin1String("ReminderDate TEXT,"));
+    sql2.append(QLatin1String("ReminderTime TEXT,"));
+    sql2.append(QLatin1String("ReminderRequest INTEGER"));
+    sql2.append(QLatin1String(");"));
 
     QString sql3 = QStringLiteral("CREATE TABLE contacts (ContactId INTEGER PRIMARY KEY,");
-    sql3.append("FirstName TEXT,");
-    sql3.append("MidName TEXT,");
-    sql3.append("LastName TEXT,");
-    sql3.append("Email TEXT,");
-    sql3.append("Street TEXT,");
-    sql3.append("District TEXT,");
-    sql3.append("City TEXT,");
-    sql3.append("County TEXT,");
-    sql3.append("Postcode TEXT,");
-    sql3.append("Country TEXT,");
-    sql3.append("Telephone TEXT,");
-    sql3.append("BirthDate TEXT,");
-    sql3.append("BirthdayId INTEGER");
-    sql3.append(");");
+    sql3.append(QLatin1String("FirstName TEXT,"));
+    sql3.append(QLatin1String("MidName TEXT,"));
+    sql3.append(QLatin1String("LastName TEXT,"));
+    sql3.append(QLatin1String("Email TEXT,"));
+    sql3.append(QLatin1String("Street TEXT,"));
+    sql3.append(QLatin1String("District TEXT,"));
+    sql3.append(QLatin1String("City TEXT,"));
+    sql3.append(QLatin1String("County TEXT,"));
+    sql3.append(QLatin1String("Postcode TEXT,"));
+    sql3.append(QLatin1String("Country TEXT,"));
+    sql3.append(QLatin1String("Telephone TEXT,"));
+    sql3.append(QLatin1String("BirthDate TEXT,"));
+    sql3.append(QLatin1String("BirthdayId INTEGER"));
+    sql3.append(QLatin1String(");"));
 
 
     QString sql4 = QStringLiteral("CREATE TABLE birthdays (BirthdayId INTEGER PRIMARY KEY,");
-    sql4.append("Name TEXT,");
-    sql4.append("Location TEXT,");
-    sql4.append("Description TEXT,");
-    sql4.append("BirthDate TEXT,");
-    sql4.append("AddToCalendar INTEGER");
-    sql4.append(");");
+    sql4.append(QLatin1String("Name TEXT,"));
+    sql4.append(QLatin1String("Location TEXT,"));
+    sql4.append(QLatin1String("Description TEXT,"));
+    sql4.append(QLatin1String("BirthDate TEXT,"));
+    sql4.append(QLatin1String("AddToCalendar INTEGER"));
+    sql4.append(QLatin1String(");"));
 
 
     query.prepare(sql1);
@@ -170,21 +170,21 @@ bool DbManager::addAppointment(Appointment &appointment)
     int reminderId=appointment.m_reminderId;
 
     QString sql=QStringLiteral("INSERT INTO appointments(`AppointmentId`,");
-    sql.append("`Title`,");
-    sql.append("`Location`,");
-    sql.append("`Description`,");
-    sql.append("`Date`,");
-    sql.append("`StartTime`,");
-    sql.append("`EndTime`,");
-    sql.append("`ReminderId`)");
-    sql.append("VALUES (:idin,");
-    sql.append(":titlein,");
-    sql.append(":locationin,");
-    sql.append(":descriptionin,");
-    sql.append(":datein,");
-    sql.append(":starttimein,");
-    sql.append(":endtimein,");
-    sql.append(":reminderidin);");
+    sql.append(QLatin1String("`Title`,"));
+    sql.append(QLatin1String("`Location`,"));
+    sql.append(QLatin1String("`Description`,"));
+    sql.append(QLatin1String("`Date`,"));
+    sql.append(QLatin1String("`StartTime`,"));
+    sql.append(QLatin1String("`EndTime`,"));
+    sql.append(QLatin1String("`ReminderId`)"));
+    sql.append(QLatin1String("VALUES (:idin,"));
+    sql.append(QLatin1String(":titlein,"));
+    sql.append(QLatin1String(":locationin,"));
+    sql.append(QLatin1String(":descriptionin,"));
+    sql.append(QLatin1String(":datein,"));
+    sql.append(QLatin1String(":starttimein,"));
+    sql.append(QLatin1String(":endtimein,"));
+    sql.append(QLatin1String(":reminderidin);"));
 
     QSqlQuery query;
     query.prepare(sql);
@@ -212,14 +212,14 @@ bool DbManager::updateAppointment(Appointment &appointment, int id)
     bool success =false;    
 
     QString sql =QStringLiteral("UPDATE appointments SET ");
-    sql.append(" Title = :tin");
-    sql.append(", Location = :lin");
-    sql.append(", Description = :din");
-    sql.append(", Date = :datein");
-    sql.append(", StartTime = :stin");
-    sql.append(", EndTime = :etin");
-   // sql.append(", ReminderId = :ridin");
-    sql.append(" WHERE AppointmentId =:idin");
+    sql.append(QLatin1String(" Title = :tin"));
+    sql.append(QLatin1String(", Location = :lin"));
+    sql.append(QLatin1String(", Description = :din"));
+    sql.append(QLatin1String(", Date = :datein"));
+    sql.append(QLatin1String(", StartTime = :stin"));
+    sql.append(QLatin1String(", EndTime = :etin"));
+   // sql.append(QLatin1String(", ReminderId = :ridin"));
+    sql.append(QLatin1String(" WHERE AppointmentId =:idin"));
 
     QSqlQuery qry;
     if(qry.prepare(sql))
@@ -230,7 +230,7 @@ bool DbManager::updateAppointment(Appointment &appointment, int id)
       qry.bindValue(QStringLiteral(":datein"), appointment.m_appointmentDate);
       qry.bindValue(QStringLiteral(":stin"),appointment.m_appointmentStartTime);
       qry.bindValue(QStringLiteral(":etin"),appointment.m_appointmentEndTime);
-    //  qry.bindValue(":ridin",appointment.m_reminderId);
+    //  qry.bindValue(QStringLiteral(":ridin"),appointment.m_reminderId);
       qry.bindValue(QStringLiteral(":idin"), QString::number(id));
       success=qry.exec();
       if (success)
@@ -269,33 +269,33 @@ bool DbManager::addContact(Contact &contact)
     int birthdayid =contact.m_birthdayid;
 
     QString sql=QStringLiteral("INSERT INTO contacts(`ContactId`,");
-    sql.append("`FirstName`,");
-    sql.append("`MidName`,");
-    sql.append("`LastName`,");
-    sql.append("`Email`,");
-    sql.append("`Street`,");
-     sql.append("`District`,");
-    sql.append("`City`,");
-    sql.append("`County`,");
-    sql.append("`Postcode`,");
-    sql.append("`Country`,");
-    sql.append("`Telephone`,");
-    sql.append("`BirthDate`,");
-    sql.append("`BirthdayId`)");
-    sql.append("VALUES (:idin,");
-    sql.append(":firstnamein,");
-    sql.append(":midnamein,");
-    sql.append(":lastnamein,");
-    sql.append(":emailin,");
-    sql.append(":streetin,");
-    sql.append(":districtin,");
-    sql.append(":cityin,");
-    sql.append(":countyin,");
-    sql.append(":postcodein,");
-    sql.append(":countryin,");
-    sql.append(":telephonein,");    
-    sql.append(":birthdatein,");
-    sql.append(":birthdayidin);");
+    sql.append(QLatin1String("`FirstName`,"));
+    sql.append(QLatin1String("`MidName`,"));
+    sql.append(QLatin1String("`LastName`,"));
+    sql.append(QLatin1String("`Email`,"));
+    sql.append(QLatin1String("`Street`,"));
+     sql.append(QLatin1String("`District`,"));
+    sql.append(QLatin1String("`City`,"));
+    sql.append(QLatin1String("`County`,"));
+    sql.append(QLatin1String("`Postcode`,"));
+    sql.append(QLatin1String("`Country`,"));
+    sql.append(QLatin1String("`Telephone`,"));
+    sql.append(QLatin1String("`BirthDate`,"));
+    sql.append(QLatin1String("`BirthdayId`)"));
+    sql.append(QLatin1String("VALUES (:idin,"));
+    sql.append(QLatin1String(":firstnamein,"));
+    sql.append(QLatin1String(":midnamein,"));
+    sql.append(QLatin1String(":lastnamein,"));
+    sql.append(QLatin1String(":emailin,"));
+    sql.append(QLatin1String(":streetin,"));
+    sql.append(QLatin1String(":districtin,"));
+    sql.append(QLatin1String(":cityin,"));
+    sql.append(QLatin1String(":countyin,"));
+    sql.append(QLatin1String(":postcodein,"));
+    sql.append(QLatin1String(":countryin,"));
+    sql.append(QLatin1String(":telephonein,"));
+    sql.append(QLatin1String(":birthdatein,"));
+    sql.append(QLatin1String(":birthdayidin);"));
 
     QSqlQuery query;
     query.prepare(sql);
@@ -329,20 +329,20 @@ bool DbManager::updateContact(Contact &contact,int id)
     bool success =false;
 
     QString sql =QStringLiteral("UPDATE contacts SET ");
-    sql.append(" FirstName = :fnin");
-    sql.append(", MidName = :mnin");
-    sql.append(", LastName = :lnin");
-    sql.append(", Email = :emin");
-    sql.append(", Street = :stin");
-    sql.append(", District = :disin");
-    sql.append(", City = :ctyin");
-    sql.append(", County = :cntin");
-    sql.append(", Postcode = :pcin");
-    sql.append(", Country =:cin");
-    sql.append(", Telephone =:tin");    
-    sql.append(", BirthDate =:bdatein");
-    //sql.append(", BirthdayId =:bidin");
-    sql.append(" WHERE ContactId =:idin");
+    sql.append(QLatin1String(" FirstName = :fnin"));
+    sql.append(QLatin1String(", MidName = :mnin"));
+    sql.append(QLatin1String(", LastName = :lnin"));
+    sql.append(QLatin1String(", Email = :emin"));
+    sql.append(QLatin1String(", Street = :stin"));
+    sql.append(QLatin1String(", District = :disin"));
+    sql.append(QLatin1String(", City = :ctyin"));
+    sql.append(QLatin1String(", County = :cntin"));
+    sql.append(QLatin1String(", Postcode = :pcin"));
+    sql.append(QLatin1String(", Country =:cin"));
+    sql.append(QLatin1String(", Telephone =:tin"));
+    sql.append(QLatin1String(", BirthDate =:bdatein"));
+    //sql.append(QLatin1String(", BirthdayId =:bidin"));
+    sql.append(QLatin1String(" WHERE ContactId =:idin"));
 
     qDebug()<<"sql query = "<<sql;
 
@@ -616,17 +616,17 @@ int DbManager::addBirthday(Birthday &b)
     int addtocalendar=b.m_addToCalendar;
 
     QString sql=QStringLiteral("INSERT INTO birthdays(`BirthdayId`,");
-    sql.append("`Name`,");
-    sql.append("`Location`,");
-    sql.append("`Description`,");
-    sql.append("`BirthDate`,");
-    sql.append("`AddToCalendar`)");
-    sql.append("VALUES (:idin,");
-    sql.append(":namein,");
-    sql.append(":locationin,");
-    sql.append(":descriptionin,");
-    sql.append(":datein,");
-    sql.append(":atcin);");
+    sql.append(QLatin1String("`Name`,"));
+    sql.append(QLatin1String("`Location`,"));
+    sql.append(QLatin1String("`Description`,"));
+    sql.append(QLatin1String("`BirthDate`,"));
+    sql.append(QLatin1String("`AddToCalendar`)"));
+    sql.append(QLatin1String("VALUES (:idin,"));
+    sql.append(QLatin1String(":namein,"));
+    sql.append(QLatin1String(":locationin,"));
+    sql.append(QLatin1String(":descriptionin,"));
+    sql.append(QLatin1String(":datein,"));
+    sql.append(QLatin1String(":atcin);"));
 
     QSqlQuery query;
     query.prepare(sql);
@@ -646,12 +646,12 @@ bool DbManager::updateBirthday(Birthday &birthday, int id)
     bool success =false;
 
     QString sql =QStringLiteral("UPDATE birthdays SET ");
-    sql.append(" Name = :nin");
-    sql.append(", Location = :lin");
-    sql.append(", Description = :din");
-    sql.append(", BirthDate = :datein");
-    sql.append(", AddToCalendar = :atcin");
-    sql.append(" WHERE BirthdayId =:idin");
+    sql.append(QLatin1String(" Name = :nin"));
+    sql.append(QLatin1String(", Location = :lin"));
+    sql.append(QLatin1String(", Description = :din"));
+    sql.append(QLatin1String(", BirthDate = :datein"));
+    sql.append(QLatin1String(", AddToCalendar = :atcin"));
+    sql.append(QLatin1String(" WHERE BirthdayId =:idin"));
 
     QSqlQuery qry;
     if(qry.prepare(sql))
@@ -826,15 +826,15 @@ int DbManager::addReminder(Reminder &reminder)
     int reminderrequest =reminder.m_reminderRequest;
 
     QString sql=QStringLiteral("INSERT INTO reminders(`ReminderId`,");
-    sql.append("`Details`,");
-    sql.append("`ReminderDate`,");
-    sql.append("`ReminderTime`,");
-    sql.append("`ReminderRequest`)");
-    sql.append("VALUES (:idin,");
-    sql.append(":detailsin,");
-    sql.append(":reminderdatein,");
-    sql.append(":remindertimein,");
-    sql.append(":reminderrequestin);");
+    sql.append(QLatin1String("`Details`,"));
+    sql.append(QLatin1String("`ReminderDate`,"));
+    sql.append(QLatin1String("`ReminderTime`,"));
+    sql.append(QLatin1String("`ReminderRequest`)"));
+    sql.append(QLatin1String("VALUES (:idin,"));
+    sql.append(QLatin1String(":detailsin,"));
+    sql.append(QLatin1String(":reminderdatein,"));
+    sql.append(QLatin1String(":remindertimein,"));
+    sql.append(QLatin1String(":reminderrequestin);"));
 
     QSqlQuery query;
     query.prepare(sql);
@@ -852,11 +852,11 @@ bool DbManager::updateReminder(Reminder &reminder, int id)
 {
     bool success =false;
     QString sql =QStringLiteral("UPDATE reminders SET ");
-    sql.append(" Details = :din");
-    sql.append(", ReminderDate = :rdin");
-    sql.append(", ReminderTime = :rtin");
-    sql.append(", ReminderRequest = :rrin");
-    sql.append(" WHERE ReminderId =:idin");
+    sql.append(QLatin1String(" Details = :din"));
+    sql.append(QLatin1String(", ReminderDate = :rdin"));
+    sql.append(QLatin1String(", ReminderTime = :rtin"));
+    sql.append(QLatin1String(", ReminderRequest = :rrin"));
+    sql.append(QLatin1String(" WHERE ReminderId =:idin"));
     QSqlQuery qry;
     if(qry.prepare(sql))
     {

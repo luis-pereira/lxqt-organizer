@@ -39,7 +39,15 @@ add_definitions("-DLXQT_ORGANIZER_VERSION=\"${LXQT_ORGANIZER_VERSION}\"")
 # include(LXQtPreventInSourceBuilds)
 
 # leave our compiler settings out for now, some fixes needed
-# include(LXQtCompilerSettings NO_POLICY_SCOPE)
+#include(LXQtCompilerSettings NO_POLICY_SCOPE)
+add_definitions(
+    -DQT_USE_QSTRINGBUILDER
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_TO_ASCII
+    -DQT_NO_URL_CAST_FROM_STRING
+    -DQT_NO_CAST_FROM_BYTEARRAY
+)
+
 
 # Translations **********************************
 # include(LXQtTranslate)

@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableViewContacts->verticalHeader()->setVisible(false);
 
     this->selectedDate=QDate::currentDate();
-    ui->labelSchedule->setText("Appointments for "+selectedDate.toString());
+    ui->labelSchedule->setText(QLatin1String("Appointments for ")+selectedDate.toString());
 
     //setup status bar
     statusTimeLabel= new QLabel();
@@ -130,20 +130,20 @@ void MainWindow::NewAppointment()
         a.m_appointmentEndTime=appointmentEndTime.toString();
         a.m_reminderId=0;
 
-        QString dateStr="("+QString::number(selectedDate.day())+"/"
-                +QString::number(selectedDate.month())+"/"
-                +QString::number(selectedDate.year())+")";
+        QString dateStr=QLatin1Char('(')+QString::number(selectedDate.day())+QLatin1Char('/')
+                +QString::number(selectedDate.month())+QLatin1Char('/')
+                +QString::number(selectedDate.year())+QLatin1Char(')');
 
         QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QLatin1Char('0'));
         QString startTimeStr=QString::number(appointmentStartTime.hour(),'f',0)
-                +":"+minutesStartStr;
+                +QLatin1Char(':')+minutesStartStr;
         QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QLatin1Char('0'));
         QString endTimeStr=QString::number(appointmentEndTime.hour(),'f',0)+
-                ":"+minutesEndStr;
+                QLatin1Char(':')+minutesEndStr;
         QString reminderDetails=title
-                +" ("+location
-                + ") "+dateStr+" ("
-                +startTimeStr+"->"+endTimeStr+")";
+                +QLatin1String(" (")+location
+                + QLatin1String(") ")+dateStr+QLatin1String(" (")
+                +startTimeStr+QLatin1String("->")+endTimeStr+QLatin1Char(')');
 
 
         Reminder r;
@@ -218,20 +218,20 @@ void MainWindow::UpdateAppointment(int dbID)
             tmp.m_appointmentEndTime=appointmentEndTime.toString();
             tmp.m_reminderId=0;
 
-            QString dateStr="("+QString::number(selectedDate.day())+"/"
-                    +QString::number(selectedDate.month())+"/"
-                    +QString::number(selectedDate.year())+")";
+            QString dateStr=QLatin1Char('(')+QString::number(selectedDate.day())+QLatin1Char('/')
+                    +QString::number(selectedDate.month())+QLatin1Char('/')
+                    +QString::number(selectedDate.year())+QLatin1Char(')');
 
             QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QLatin1Char('0'));
             QString startTimeStr=QString::number(appointmentStartTime.hour(),'f',0)
-                    +":"+minutesStartStr;
+                    +QLatin1Char(':')+minutesStartStr;
             QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QLatin1Char('0'));
             QString endTimeStr=QString::number(appointmentEndTime.hour(),'f',0)+
-                    ":"+minutesEndStr;
+                    QLatin1Char(':')+minutesEndStr;
             QString reminderDetails=title
-                    +" ("+location
-                    + ") "+dateStr+" ("
-                    +startTimeStr+"->"+endTimeStr+")";
+                    +QLatin1String(" (")+location
+                    + QLatin1String(") ")+dateStr+QLatin1String(" (")
+                    +startTimeStr+QLatin1String("->")+endTimeStr+QLatin1String(")");
 
             if (dbm.isOpen())
             {
@@ -296,7 +296,7 @@ void MainWindow::NewContact()
         c.m_birthdayid=this->birthDateId;
 
         Birthday b;
-        b.m_name=c.m_firstname+" "+c.m_lastname;
+        b.m_name=c.m_firstname+QLatin1Char(' ')+c.m_lastname;
         b.m_location=c.m_city;
         b.m_description=QLatin1String("Birthday");
         b.m_birthDate=birthDate.toString();
@@ -376,7 +376,7 @@ void MainWindow::UpdateContact(int dbID)
         if (dbm.isOpen())
         {
             Birthday b = dbm.getBirthdayByID(currentContact.m_birthdayid);
-            b.m_name=contactFirstName+" "+contactLastName;
+            b.m_name=contactFirstName+QLatin1Char(' ')+contactLastName;
             b.m_location=city;
             b.m_description=QLatin1String("Birthday");
             b.m_birthDate=birthDate.toString();
@@ -641,7 +641,7 @@ void MainWindow::checkForBirthdaysNextSevenDays()
             QDate bdayDate=QDate(currentDate.year(),bornDate.month(),bornDate.day());
             if (bdayDate.addDays(-i)==currentDate) { //add all - day birthdays
                 Birthday remBirthday =b;
-                remBirthday.m_name="(Reminder) "+b.m_name;
+                remBirthday.m_name=QLatin1String("(Resminder) ")+b.m_name;
                 birthdayReminderModel->addBirthday(remBirthday);
             }
         }
@@ -787,7 +787,7 @@ void MainWindow::importContactsXML()
             c.m_birthdayid=0;
 
             Birthday b;
-            b.m_name=c.m_firstname+" "+c.m_lastname;
+            b.m_name=c.m_firstname+QLatin1Char(' ')+c.m_lastname;
             b.m_location=c.m_city;
             b.m_description=QLatin1String("Birthday");
             b.m_birthDate=contact.attribute(QStringLiteral("BirthDate"));
@@ -861,20 +861,20 @@ void MainWindow::importAppointmentsXML()
             QTime appStartTime =QTime::fromString(appointment.attribute(QStringLiteral("StartTime")));
             QTime appEndTime =QTime::fromString(appointment.attribute(QStringLiteral("EndTime")));
 
-            QString dateStr="("+QString::number(appDate.day())+"/"
-                    +QString::number(appDate.month())+"/"
-                    +QString::number(appDate.year())+")";
+            QString dateStr=QLatin1Char('(')+QString::number(appDate.day())+QLatin1Char('/')
+                    +QString::number(appDate.month())+QLatin1Char('/')
+                    +QString::number(appDate.year())+QLatin1Char(')');
 
             QString minutesStartStr = QStringLiteral("%1").arg(appStartTime.minute(), 2, 10, QLatin1Char('0'));
             QString startTimeStr=QString::number(appStartTime.hour(),'f',0)
-                    +":"+minutesStartStr;
+                    +QLatin1Char(':')+minutesStartStr;
             QString minutesEndStr = QStringLiteral("%1").arg(appEndTime.minute(), 2, 10, QLatin1Char('0'));
             QString endTimeStr=QString::number(appEndTime.hour(),'f',0)+
-                    ":"+minutesEndStr;
+                    QLatin1Char(':')+minutesEndStr;
             QString reminderDetails=appointment.attribute(QStringLiteral("Title"))
-                    +" ("+appointment.attribute(QStringLiteral("Location"))
-                    + ") "+dateStr+" ("
-                    +startTimeStr+"->"+endTimeStr+")";
+                    +QLatin1String(" (")+appointment.attribute(QStringLiteral("Location"))
+                    + QLatin1String(") ")+dateStr+QLatin1String(" (")
+                    +startTimeStr+QLatin1String("->")+endTimeStr+QLatin1Char(')');
             Reminder r;
             r.m_details=reminderDetails;
             r.m_reminderDate=appDate.toString();
@@ -942,7 +942,7 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
     selectedDate=date;
-    ui->labelSchedule->setText("Appointments for "+date.toString());
+    ui->labelSchedule->setText(QLatin1String("Appointments for ")+date.toString());
     DisplayAppointmentsForDate(selectedDate);
     DisplayBirthdaysForDate(selectedDate);
 }
@@ -1003,7 +1003,7 @@ void MainWindow::on_pushButtonShowQuickDetails_clicked()
 
 void MainWindow::on_pushButtonMailTo_clicked()
 {   
-    QString url="mailto:?to="+selectedContact.m_email+"&subject=Enter the subject&body=Enter message";
+    QString url=QLatin1String("mailto:?to=")+selectedContact.m_email+QLatin1String("&subject=Enter the subject&body=Enter message");
     QDesktopServices::openUrl(QUrl(url, QUrl::TolerantMode));
 }
 
