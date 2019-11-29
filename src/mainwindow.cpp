@@ -134,10 +134,10 @@ void MainWindow::NewAppointment()
                 +QString::number(selectedDate.month())+"/"
                 +QString::number(selectedDate.year())+")";
 
-        QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QChar('0'));
+        QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QLatin1Char('0'));
         QString startTimeStr=QString::number(appointmentStartTime.hour(),'f',0)
                 +":"+minutesStartStr;
-        QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QChar('0'));
+        QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QLatin1Char('0'));
         QString endTimeStr=QString::number(appointmentEndTime.hour(),'f',0)+
                 ":"+minutesEndStr;
         QString reminderDetails=title
@@ -222,10 +222,10 @@ void MainWindow::UpdateAppointment(int dbID)
                     +QString::number(selectedDate.month())+"/"
                     +QString::number(selectedDate.year())+")";
 
-            QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QChar('0'));
+            QString minutesStartStr = QStringLiteral("%1").arg(appointmentStartTime.minute(), 2, 10, QLatin1Char('0'));
             QString startTimeStr=QString::number(appointmentStartTime.hour(),'f',0)
                     +":"+minutesStartStr;
-            QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QChar('0'));
+            QString minutesEndStr = QStringLiteral("%1").arg(appointmentEndTime.minute(), 2, 10, QLatin1Char('0'));
             QString endTimeStr=QString::number(appointmentEndTime.hour(),'f',0)+
                     ":"+minutesEndStr;
             QString reminderDetails=title
@@ -865,10 +865,10 @@ void MainWindow::importAppointmentsXML()
                     +QString::number(appDate.month())+"/"
                     +QString::number(appDate.year())+")";
 
-            QString minutesStartStr = QStringLiteral("%1").arg(appStartTime.minute(), 2, 10, QChar('0'));
+            QString minutesStartStr = QStringLiteral("%1").arg(appStartTime.minute(), 2, 10, QLatin1Char('0'));
             QString startTimeStr=QString::number(appStartTime.hour(),'f',0)
                     +":"+minutesStartStr;
-            QString minutesEndStr = QStringLiteral("%1").arg(appEndTime.minute(), 2, 10, QChar('0'));
+            QString minutesEndStr = QStringLiteral("%1").arg(appEndTime.minute(), 2, 10, QLatin1Char('0'));
             QString endTimeStr=QString::number(appEndTime.hour(),'f',0)+
                     ":"+minutesEndStr;
             QString reminderDetails=appointment.attribute(QStringLiteral("Title"))
